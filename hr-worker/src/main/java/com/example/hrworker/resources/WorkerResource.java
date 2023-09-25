@@ -35,6 +35,18 @@ public class WorkerResource {
     @GetMapping(value = "/{id}")
     public ResponseEntity<Worker> findById(@PathVariable Long id) {
 
+        // For class 03-05 - CircuitBreaker (replacing Hystrix)
+        // Fallback test - simulating error
+        // int x = 1;
+        // if (x == 1) throw new RuntimeException("Test CircuitBreaker Fallback");
+
+        // Fallback test - stressing time
+        // try {
+        // Thread.sleep(3000L);
+        // } catch (InterruptedException e) {
+        // System.out.println("Time Thread Error!");
+        // }
+
         logger.info("PORT = " + env.getProperty("local.server.port"));
 
         Worker obj = repository.findById(id).get();
